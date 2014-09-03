@@ -2,6 +2,26 @@
 
 var User = require('../models/user');
 
+exports.update = function(req, res){
+  req.user.update(req.body, function(err){
+    if(err){
+      req.flash('error', err);
+      res.redirect('/profile/edit');
+      return;
+    }
+    //catch err if duplicate email, falsh and redirect
+    req.flash('notice', 'You have updated the user.');
+    res.redirect('/profile');
+  });
+};
+
+exports.edit = function(req, res){
+  res.render('users/edit');
+};
+exports.profile = function(req, res){
+  res.render('users/profile');
+};
+
 exports.new = function(req, res){
   res.render('users/new');
 };
@@ -11,9 +31,9 @@ exports.login = function(req, res){
 };
 
 exports.logout = function(req, res){
-  req.session.destroy(function(){
-    res.redirect('/');
-  });
+  req.logout();
+  //req.flash('notice', 'Thanks for visiting');
+  res.redirect('/');
 };
 
 exports.create = function(req, res){
@@ -22,21 +42,6 @@ exports.create = function(req, res){
       res.redirect('/');
     }else{
       res.redirect('/register');
-    }
-  });
-};
-
-exports.authenticate = function(req, res){
-  User.authenticate(req.body, function(user){
-    if(user){
-      req.session.regenerate(function(){
-        req.session.userId = user._id;
-        req.session.save(function(){
-          res.redirect('/');
-        });
-      });
-    }else{
-      res.redirect('/login');
     }
   });
 };

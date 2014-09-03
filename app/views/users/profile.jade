@@ -1,0 +1,15 @@
+extends ../shared/template
+block content
+  .col-xs-6
+    .panel.panel-default
+      .panel-heading Profile
+      .panel-body
+        a.h2(href='/profile/edit'): i.fa.fa-edit.fa-lg= user.email || 'Anon'
+        br
+        br
+        img.img.img-responsive.img-thumbnail(src=user.photo)
+        h2 Age: #{user.age}
+  .col-xs-6
+
+block scripts
+
