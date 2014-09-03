@@ -74,7 +74,16 @@ User.googleAuthenticate = function(token, secret, google, cb){
   console.log(google);
   User.collection.findOne({googleId:google.id}, function(err, user){
     if(user){return cb(null, user);}
-    user = {googleid:google.id, username:google.displayName, displayName:google.displayName, type:'google'};
+    user = {googleId:google.id, username:google.displayName, displayName:google.displayName, type:'google'};
+    User.collection.save(user, cb);
+  });
+};
+
+
+User.redditAuthenticate = function(token, secret, reddit, cb){
+  User.collection.findOne({redditeId:reddit.id}, function(err, user){
+    if(user){return cb(null, user);}
+    user = {redditId:reddit.id, username:reddit.name, displayName:reddit.name, type:'reddit'};
     User.collection.save(user, cb);
   });
 };

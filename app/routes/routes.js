@@ -7,6 +7,7 @@ var morgan         = require('morgan'),
     session        = require('express-session'),
     RedisStore     = require('connect-redis')(session),
     security       = require('../lib/security'),
+    crypto         = require('crypto'),
     passport       = require('passport'),
     flash          = require('connect-flash'),
     passportConfig = require('../lib/passport/config'),
@@ -40,8 +41,15 @@ module.exports = function(app, express){
   app.get('/auth/github/callback', passport.authenticate('github', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Github!', failureFlash:'Failed to login through Github'}));
 
   app.get('/auth/google', passport.authenticate('google',  {scope: ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.profile.emails.read']}));
-
   app.get('/auth/google/callback', passport.authenticate('google', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Google!', failureFlash:'Failed to login through Google'}));
+
+  app.get('/auth/reddit', function(req, res, next){
+    req.session.state = crypto.randomBytes(32).toString('hex');
+      passport.authenticate('reddit', {
+        state: req.session.state,
+      })(req, res, next);
+  });
+  app.get('/auth/reddit/callback', passport.authenticate('reddit', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Reddit!', failureFlash:'Failed to login through Reddit'}));
 
   app.use(security.bounce);
   app.delete('/logout', users.logout);

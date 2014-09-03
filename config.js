@@ -20,4 +20,10 @@ config.google = {
   callbackURL : 'http://mikey-vm.com:3333/auth/google/callback'
 };
 
+config.reddit = {
+  clientId    : 'XXjLnsezuBGJzg',
+  clientSecret: process.env.REDDIT_SECRET,
+  callbackURL : 'http://mikey-vm.com:3333/auth/reddit/callback'
+};
+
 module.exports = config;
