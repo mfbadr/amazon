@@ -18,10 +18,11 @@
                 input(type='hidden', name='_method', value='delete')
                 button.btn.btn-danger= user.email || user.username
         else
+          li: a(href='/auth/facebook'): i.fa.fa-facebook.fa-lg
           li: a(href='/auth/reddit'): i.fa.fa-reddit.fa-lg
-          li: a(href='/auth/google'): i.fa.fa-google.fa-lg &nbsp; Login with Google
-          li: a(href='/auth/github'): i.fa.fa-github.fa-lg &nbsp; Login with Github
-          li: a(href='/auth/twitter'): i.fa.fa-twitter.fa-lg &nbsp; Login with Twitter
+          li: a(href='/auth/google'): i.fa.fa-google.fa-lg
+          li: a(href='/auth/github'): i.fa.fa-github.fa-lg
+          li: a(href='/auth/twitter'): i.fa.fa-twitter.fa-lg
           li: a(href='/register'): i.fa.fa-rocket.fa-lg &nbsp; Register
           li: a(href='/login'): i.fa.fa-sign-in.fa-lg &nbsp; Login
 

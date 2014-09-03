@@ -26,4 +26,9 @@ config.reddit = {
   callbackURL : 'http://mikey-vm.com:3333/auth/reddit/callback'
 };
 
+config.facebook = {
+  clientId    : '344026865773316',
+  clientSecret: process.env.FACEBOOK_SECRET,
+  callbackURL : 'http://mikey-vm.com:3333/auth/facebook/callback'
+};
 module.exports = config;

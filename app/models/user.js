@@ -81,12 +81,19 @@ User.googleAuthenticate = function(token, secret, google, cb){
 
 
 User.redditAuthenticate = function(token, secret, reddit, cb){
-  User.collection.findOne({redditeId:reddit.id}, function(err, user){
+  User.collection.findOne({redditId:reddit.id}, function(err, user){
     if(user){return cb(null, user);}
     user = {redditId:reddit.id, username:reddit.name, displayName:reddit.name, type:'reddit'};
     User.collection.save(user, cb);
   });
 };
 
+User.facebookAuthenticate = function(token, secret, facebook, cb){
+  User.collection.findOne({facebookId:facebook.id}, function(err, user){
+    if(user){return cb(null, user);}
+    user = {facebookId:facebook.id, username:facebook.displayName, displayName:facebook.dispalyName, type:'facebook'};
+    User.collection.save(user, cb);
+  });
+};
 module.exports = User;
 
