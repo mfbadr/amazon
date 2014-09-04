@@ -1,0 +1,30 @@
+{
+  "_id":{"$oid":"000000000000000000000001"},
+  "name":"iPad",
+  "photo":"http://placekitten.com/400/400",
+  "price":134.45
+}
+{
+  "_id":{"$oid":"000000000000000000000002"},
+  "name":"Tesla Model S",
+  "photo":"http://placekitten.com/400/400",
+  "price":1340.45
+}
+{
+  "_id":{"$oid":"000000000000000000000003"},
+  "name":"Oculus Rift",
+  "photo":"http://placekitten.com/400/400",
+  "price":434.45
+}
+{
+  "_id":{"$oid":"000000000000000000000004"},
+  "name":"Corgi Puppy",
+  "photo":"http://placekitten.com/400/400",
+  "price":400.45
+}
+{
+  "_id":{"$oid":"000000000000000000000005"},
+  "name":"PS4",
+  "photo":"http://placekitten.com/400/400",
+  "price":634.45
+}
