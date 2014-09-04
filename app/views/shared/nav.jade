@@ -11,12 +11,13 @@
     .collapse.navbar-collapse#bs-navbar-collapse
       ul.nav.navbar-nav.navbar-right
         if user
+          li: a(href='/products'): i.fa.fa-gift.fa-lg &nbsp; Products
           li: a(href='/profile'): i.fa.fa-anchor.fa-lg &nbsp; Profile
           li
             form.navbar-form(method='post', action='/logout')
               .form-group
                 input(type='hidden', name='_method', value='delete')
-                button.btn.btn-danger= user.email || user.username
+                button.btn.btn-danger Log Out
         else
           li: a(href='/auth/facebook'): i.fa.fa-facebook.fa-lg
           li: a(href='/auth/reddit'): i.fa.fa-reddit.fa-lg

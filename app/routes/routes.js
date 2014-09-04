@@ -13,6 +13,7 @@ var morgan         = require('morgan'),
     passportConfig = require('../lib/passport/config'),
     debug          = require('../lib/debug'),
     home           = require('../controllers/home'),
+    products       = require('../controllers/products'),
     users          = require('../controllers/users');
 
 module.exports = function(app, express){
@@ -45,9 +46,9 @@ module.exports = function(app, express){
 
   app.get('/auth/reddit', function(req, res, next){
     req.session.state = crypto.randomBytes(32).toString('hex');
-      passport.authenticate('reddit', {
-        state: req.session.state,
-      })(req, res, next);
+    passport.authenticate('reddit', {
+      state: req.session.state
+    })(req, res, next);
   });
   app.get('/auth/reddit/callback', passport.authenticate('reddit', {successRedirect:'/', failureRedirect:'/login', successFlash:'You are logged with Reddit!', failureFlash:'Failed to login through Reddit'}));
 
@@ -60,6 +61,7 @@ module.exports = function(app, express){
   app.get('/profile/edit', users.edit);
   app.post('/profile', users.update);
 
+  app.get('/products', products.index);
   console.log('Express: Routes Loaded');
 };
 
