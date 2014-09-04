@@ -1,0 +1,44 @@
+extends ../shared/template
+block content
+  h2 Products
+  .panel.panel-default
+    .panel-body
+      table.table.table-hover.table-condensed
+        thead
+          tr
+            th Name
+            th Photo
+            th Price
+            th Count
+            th Total
+        tbody
+          - var uniqueProducts = _.uniq(cart, false, function(item){return item.name})
+          - var subtotal = 0;
+          each product in uniqueProducts
+            - var count = _.where(cart, {name:product.name}).length
+            - var itemTotal = count * product.price
+            - subtotal += (count * product.price)
+            tr
+              td= product.name
+              td: img(src=product.photo style="width: 100px;")
+              td $#{product.price}
+              td= count
+              td $#{itemTotal.toFixed(2)}
+          tr
+            td
+            td
+            td
+            td Subtotal
+            td $#{subtotal.toFixed(2)}
+          tr
+            td
+            td
+            td Tax = 7.5%
+            td Total
+            td $#{(subtotal * 1.075).toFixed(2)}
+
+
+
+block scripts
+  script(src='/js/user/home.js')
+

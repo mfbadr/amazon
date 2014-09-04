@@ -12,7 +12,10 @@ block content
         tbody
           each product in products
             tr
-              td= product.name
+              td
+                form(method='post', action='/cart')
+                  input(type='hidden', value=product._id, name='productId')
+                  button.btn.btn-success.btn-lg(type='submit'): i.fa.fa-shopping-cart &nbsp; #{product.name}
               td: img(src=product.photo style="width: 100px;")
               td $#{product.price}
 
