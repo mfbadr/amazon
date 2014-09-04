@@ -31,4 +31,9 @@ config.facebook = {
   clientSecret: process.env.FACEBOOK_SECRET,
   callbackURL : 'http://mikey-vm.com:3333/auth/facebook/callback'
 };
+config.stripe = {
+  publicKey   : 'pk_test_J7xcyOMFFJnk4YcLI4vM42jV',
+  secretKey   : process.env.STRIPE_SECRET,
+  callbackURL : 'http://mikey-vm.com:3333/auth/facebook/callback'
+};
 module.exports = config;
